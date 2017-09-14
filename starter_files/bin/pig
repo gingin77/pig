@@ -19,5 +19,5 @@ if players.length == 1
   players.push(CautiousPlayer.new("Cautious2"))
 end
 
-pig = Pig.new(*players, games: 1, silent: false)
+pig = Pig.new(*players, games: 100, silent: true)
 pig.run

@@ -47,7 +47,7 @@ end
 
 class CautiousPlayer < Player
   def roll_again?
-    super && @turn_score < 2
+    super && @turn_score < 5
   end
 end
 
@@ -76,7 +76,7 @@ class StopatScorePlayer < Player
     @rolls += 1
   end
   def roll_again?
-    super && @turn_score < 20
+    super && @turn_score < 18
   end
 end
 
@@ -94,6 +94,6 @@ class StrategyChangerPlayer < Player
     super && !stop?
   end
   def stop?
-    (@rolls == 3 && @turn_score >= 15) || @turn_score >= 25
+    (@rolls == 2 && @turn_score >= 12) || @turn_score >= 20
   end
 end
