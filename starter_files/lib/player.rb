@@ -49,4 +49,46 @@ class CautiousPlayer < Player
   end
 end
 
-## TODO add your own Player subclasses here
+class StopatThreeRollsPlayer < Player
+  def start_turn
+    super
+    @rolls = 0
+  end
+  def record_roll(roll)
+    super
+    @rolls += 1
+  end
+  def roll_again?
+    super && @rolls < 3
+  end
+end
+
+# a player that stops when they get a particular score for a turn
+class StopatScorePlayer < Player
+  def start_turn
+    super
+    @rolls = 0
+  end
+  def record_roll(roll)
+    super
+    @rolls += 1
+  end
+  def roll_again?
+    super && @score = 999
+  end
+end
+
+# a player that changes strategies based on their current total score
+# class StrategyChangerPlayer < Player
+#   def start_turn
+#     super
+#     @rolls = 0
+#   end
+#   def record_roll(roll)
+#     super
+#     @rolls += 1
+#   end
+#   def roll_again?
+#     super && @score  < 2
+#   end
+# end
