@@ -1,3 +1,5 @@
+require "pry"
+
 class Player
   attr_reader :score, :name, :wins, :losses
 
@@ -74,21 +76,24 @@ class StopatScorePlayer < Player
     @rolls += 1
   end
   def roll_again?
-    super && @score = 999
+    super && @turn_score < 20
   end
 end
 
 # a player that changes strategies based on their current total score
-# class StrategyChangerPlayer < Player
-#   def start_turn
-#     super
-#     @rolls = 0
-#   end
-#   def record_roll(roll)
-#     super
-#     @rolls += 1
-#   end
-#   def roll_again?
-#     super && @score  < 2
-#   end
-# end
+class StrategyChangerPlayer < Player
+  def start_turn
+    super
+    @rolls = 0
+  end
+  def record_roll(roll)
+    super
+    @rolls += 1
+  end
+  def roll_again?
+    super && !stop?
+  end
+  def stop?
+    (@rolls == 3 && @turn_score >= 15) || @turn_score >= 25
+  end
+end
